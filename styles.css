@@ -1,242 +1,182 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
     color: #333;
     text-align: center;
+    margin: 0;
     padding: 20px;
-}
-
-.grid {
-    max-width: 600px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-}
-
-.grid div {
-    background-color: #ddd;
-    height: 100px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    font-size: 20px;
-    cursor: pointer;
+    min-height: 100vh;
 }
 
-.questions div {
+#battle-tactics-game {
+    background-color: #0e0e10;  /* Dark background for a somber feel */
+    color: #ddd;  /* Light text for contrast */
+    border: 2px solid #4a3729;  /* Dark wood or leather-like border */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);  /* Deep shadows for a 3D effect */
+    margin: 20px;
+    font-family: 'Cinzel', serif;  /* Use a medieval style font */
+}
+
+#battle-scenario{
+    display: flex;
+}
+
+h2 {
+    color: #c4a264;  /* Gold color for headings to add a touch of royalty */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);  /* Text shadow for a raised letter effect */
+}
+
+.game-description {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-style: italic;  /* Slight italic style to mimic ancient scripts */
+    color: #bbb;
+}
+
+/* Styling for tactic cards */
+.tactic-card {
+    background-color: #1a1a1a;  /* Dark card background */
+    border: 1px solid #423c38;  /* Subtle borders to define card edges */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);  /* Shadow for depth */
+    border-radius: 8px;
+    padding: 15px;
     margin: 10px;
+    width: 160px;  /* Uniform card width */
+    height: 240px;  /* Uniform card height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.tactic-card:hover {
+    transform: translateY(-10px);  /* Lift cards on hover */
+    background-color: #292929;  /* Slightly lighter on hover for visual feedback */
+}
+
+.tactic-card img {
+    width: 80px;  /* Icon size within card */
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.tactic-card span {
+    color: #c4a264;  /* Text color that matches headings */
+    font-weight: bold;
+}
+
+/* Result display styling */
+#battle-result {
     padding: 10px;
-    background-color: #eee;
-}
-
-#results {
-    display: none;
-}
-
-button {
+    background-color: #202020;  /* Dark background for result area */
+    color: #f4f4f4;  /* Light text for readability */
+    border-radius: 5px;
     margin-top: 20px;
-    padding: 10px 20px;
+    border: 1px solid #423c38;  /* Consistent border with cards */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Common Button Styles */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     font-size: 16px;
+    margin: 15px 5px;
     cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.grid div {
-    background-color: #ddd;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    cursor: pointer;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
+button:hover {
+    background-color: #45a049;
 }
 
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-}
-
-.card-front {
-    background: #fff;
-    color: #000;
-}
-
-.card-back {
-    background: #333;
-    color: #fff;
-    transform: rotateY(180deg);
-}
-
-.grid div {
-    background-color: #ddd;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    cursor: pointer;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-}
-
-.card-front {
-    background: #fff;
-    color: #000;
-}
-
-.card-back {
-    background: #333;
-    color: #fff;
-    transform: rotateY(180deg);
-}
-
+/* Memory Game Styles */
 #game-container {
     display: flex;
-    justify-content: space-between;
-    align-items: start;
-}
-
-#memory-game, #feedback {
-    margin: 10px;
-}
-#game-container {
-    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: start;
-    padding: 20px;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 40px; /* Space between games */
 }
 
 #memory-game {
-    flex-grow: 1;  /* Allows the game area to take up more space if needed */
-    margin-right: 20px;  /* Adds some space between the game area and the feedback */
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
-#feedback {
-    width: 200px;  /* Sets a fixed width for the feedback area */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: auto;
+}
+
+
+.grid div {
+    background-color: #fff; /* Card background color */
+    border: 2px solid #ccc; /* Border for the cards */
+    border-radius: 8px; /* Rounded corners for the cards */
     display: flex;
-    flex-direction: column;  /* Aligns the feedback elements vertically */
-    align-items: center;  /* Centers the feedback elements horizontally */
-}
-
-#feedback p {
-    margin: 10px 0;  /* Adds vertical spacing */
-    font-size: 14px;  /* Smaller font size for feedback text */
-}
-
-#feedback img {
-    width: 100%;  /* Makes the image responsive within the feedback div */
-    height: auto;  /* Maintains the aspect ratio of the image */
-    max-height: 150px;  /* Limits the height of the image to keep it small */
+    justify-content: center;
+    align-items: center;
+    font-family: 'Almendra', serif; /* Consistent with the theme */
+    font-size: 16px; /* Legible font size */
+    color: black; /* Text color */
+    height: 100px; /* Fixed height for each card */
+    cursor: pointer; /* Cursor indicates clickable area */
+    transition: transform 0.3s ease; /* Smooth transform on hover */
 }
 
 
 .matched {
-    background-color: #4CAF50; /* Green background for matched cards */
-    color: rgb(254, 11, 11); /* White text for better visibility */
+    background-color: #4CAF50;
+    color: rgb(254, 11, 11);
 }
 
-
-
-#feedback {
-    width: 200px;  /* Sets a fixed width for the feedback area */
-    display: none;  /* Initially hide the feedback section */
-    flex-direction: column;  /* Aligns the feedback elements vertically */
-    align-items: center;  /* Centers the feedback elements horizontally */
-    margin-left: 20px;  /* Adds some space between the game area and the feedback */
-}
-
-#feedback p {
-    margin: 10px 0;  /* Adds vertical spacing */
-    font-size: 14px;  /* Smaller font size for feedback text */
-}
-
-#feedback img {
-    width: 100%;  /* Makes the image responsive within the feedback div */
-    height: auto;  /* Maintains the aspect ratio of the image */
-    max-height: 150px;  /* Limits the height of the image to keep it small */
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    text-align: center;
-}
-
-#game-container {
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    margin-top: 20px;
-}
-
-#memory-game {
-    flex: 1; /* Allows the game area to expand as needed */
-    padding: 20px;
-    margin-right: 20px; /* Adds some space between the game area and the feedback */
-    background-color: #fff; /* Adds a background color */
-    border: 2px solid #ccc; /* Adds a border for distinction */
-    border-radius: 8px; /* Rounds the corners */
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Adjust based on the number of cards */
-    gap: 10px;
-}
-
-.grid div {
-    background-color: #ddd;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.6s;
-    border-radius: 4px; /* Rounds the corners of the cards */
-}
-
-#feedback {
-    width: 300px;
-    padding: 10px;
-    background-color: #fff;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-}
-
-#feedback img {
+.card-front, .card-back {
+    position: absolute;
     width: 100%;
-    height: auto;
-    border-radius: 4px; /* Rounds the corners of the image */
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.card-front {
+    background: #fff;
+    color: #000;
+}
+
+.card-back {
+    background: #333;
+    color: #fff;
+    transform: rotateY(180deg);
 }
 
 #scoreboard {
     margin-top: 20px;
 }
 
-.countdown-header {
-    color: #DAA520; /* Gold color, suggestive of royalty and drama */
-    font-size: 1.5em; /* Larger text size */
-    font-weight: bold; /* Bold text */
-    text-shadow: 1px 1px 2px black; /* Slight shadow for better readability */
-    margin-bottom: 10px; /* Space below the header */
-    text-align: center; /* Center-align the text */
-    background-color: #333; /* Dark background for contrast */
-    padding: 10px;
-    border-radius: 5px; /* Slightly rounded corners for aesthetic */
-}
-
+/* Feedback Section */
 #feedback {
     width: 300px;
     padding: 10px;
@@ -246,5 +186,587 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 20px; /* Adjust as per layout needs */
+}
+
+#feedback p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+#feedback img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    border-radius: 4px;
+}
+
+/* Countdown Header */
+.countdown-header {
+    color: #DAA520;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Results Section */
+#results {
+    display: none;
+    background-color: #1a1a1d;
+    color: #dcd0c0;
+    border: 2px solid #4a4e69;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#results img {
+    width: 150px;
+    height: auto;
+    margin-top: 10px;
+}
+
+/* Header Styles */
+h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* Attribute Game Styles - Ensures it appears below other content */
+#attribute-game {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-container {
+    perspective: 1000px;
+    margin: 20px auto;
+    width: 300px;
+    height: 400px;
+}
+
+#question-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    border-radius: 20px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+}
+
+.card-symbol {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.card-image {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.card-image i {
+    font-size: 40px;
+}
+
+#question-text {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-align: center;
+}
+
+#answers {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.answer-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.answer-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+.answer-btn.selected {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: white;
+    font-weight: bold;
+}
+
+.card-footer {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Special Button Styles for Attribute Game */
+#next-question-button {
+    background-color: #2196F3;
+}
+
+#next-question-button:hover {
+    background-color: #0b7dda;
+}
+
+#calculate-house-button {
+    background-color: #ff9800;
+}
+
+#calculate-house-button:hover {
+    background-color: #e68a00;
+}
+
+/* General Card Styles */
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+
+:root {
+    --stark-gray: #414141;
+    --lannister-crimson: #8B0000;
+    --targaryen-black: #1a1a1a;
+    --baratheon-gold: #B59410;
+    --night-watch-black: #121212;
+    --ice-white: #e7e7e7;
+    --parchment: #f5e7c9;
+    --westeros-stone: #6d6d6d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--targaryen-black);
+    background-image: url("https://cdnjs.cloudflare.com/ajax/libs/simple-icons/3.0.1/simple-icons.svg"), linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    background-blend-mode: overlay;
+    background-size: cover;
+    color: var(--ice-white);
+    font-family: 'Almendra', serif;
+    padding: 20px;
+    position: relative;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, var(--stark-gray), var(--lannister-crimson), var(--baratheon-gold), var(--stark-gray));
+}
+
+h1, h2, h3 {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    color: var(--baratheon-gold);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 25px 0;
+    border-bottom: 2px solid var(--lannister-crimson);
+    padding-bottom: 15px;
+    position: relative;
+}
+
+h1::after {
+    content: "⚔";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--targaryen-black);
+    padding: 0 15px;
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin: 20px 0;
+    color: var(--ice-white);
+    position: relative;
+    display: inline-block;
+}
+
+h2::before, h2::after {
+    content: "❄";
+    color: var(--stark-gray);
+    margin: 0 10px;
+    font-size: 1.2rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin: 15px 0;
+}
+
+#game-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+#memory-game, #attribute-game, #feedback, #scoreboard, #results {
+    background-color: rgba(26, 26, 26, 0.8);
+    border: 3px solid var(--westeros-stone);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    position: relative;
+}
+
+#memory-game::before, #attribute-game::before, #feedback::before, #scoreboard::before, #results::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 1px solid var(--baratheon-gold);
+    border-radius: 12px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+button {
+    font-family: 'Cinzel', serif;
+    background-color: var(--lannister-crimson);
+    color: var(--ice-white);
+    border: 2px solid var(--baratheon-gold);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 10px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background-color: var(--baratheon-gold);
+    color: var(--night-watch-black);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(181, 148, 16, 0.5);
+}
+
+#game-banner {
+    background: var(--stark-gray) !important;
+    border: 2px solid var(--baratheon-gold) !important;
+    color: var(--ice-white);
+    font-family: 'Cinzel', serif;
+    border-radius: 4px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card {
+    background-color: var(--parchment);
+    color: var(--night-watch-black);
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid var(--westeros-stone);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/api/placeholder/80/80');
+    background-size: 80px;
+    background-repeat: repeat;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+#answers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#answers button {
+    background-color: var(--stark-gray);
+    width: 100%;
+    text-align: left;
+}
+
+#answers button:hover {
+    background-color: var(--lannister-crimson);
+}
+
+#scoreboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    min-width: 200px;
+    background-color: rgba(26, 26, 26, 0.9);
+    border: 3px solid var(--stark-gray);
+}
+
+#scoreboard p {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: var(--ice-white);
+}
+
+#time, #score {
+    color: var(--baratheon-gold);
+    font-weight: bold;
+}
+
+#house-image, #performance-image {
+    margin: 15px auto;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(181, 148, 16, 0.5));
+    max-width: 100%;
+    border: 3px solid var(--baratheon-gold);
+}
+
+#results {
+    text-align: center;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: rgba(26, 26, 26, 0.9);
+}
+
+#house-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 20px 0;
+    text-align: left;
+    padding: 0 15px;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    #game-container {
+        flex-direction: column;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Medieval-style scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--night-watch-black);
+    border-left: 1px solid var(--westeros-stone);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--lannister-crimson);
+    border: 1px solid var(--baratheon-gold);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--baratheon-gold);
+}
+
+/* Custom styling for countdown */
+.countdown-header {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    color: var(--ice-white);
+}
+
+.countdown-header::before {
+    content: "«";
+    margin-right: 10px;
+    color: var(--baratheon-gold);
+}
+
+.countdown-header::after {
+    content: "»";
+    margin-left: 10px;
+    color: var(--baratheon-gold);
+}
+
+#game-container {
+    display: flex; /* Establishes a flex container */
+    justify-content: space-around; /* Spreads out the child elements */
+    align-items: start; /* Aligns items to the start of the flex container */
+    margin-top: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between; /* Adjusts the space distribution */
+    align-items: flex-start; /* Aligns items to the top of the container */
+}
+
+#memory-game, #feedback {
+    flex: 1; /* Allows each child to grow and fill the space */
+    margin: 10px; /* Provides spacing between the two elements */
+    min-width: 0; /* Prevents flex items from not shrinking below their content size */
+}
+.row {
+    display: flex;
+    justify-content: space-between; /* Ensures that there is space around items if there's extra space */
+    align-items: flex-start; /* Aligns items at the start of the container vertically */
+}
+
+
+
+#feedback {
+    flex: 1;  /* Takes less space compared to the game section */
+    margin: 10px;
+    width: auto;  /* Allows it to grow but controlled by flex-grow */
+    max-width: 300px; /* Ensures it doesn't get too large */
+}
+
+#game-container {
+    display: flex;
+    justify-content: center; /* Center horizontally in the container */
+    align-items: center; /* Center vertically in the container */
+    height: 100vh; /* Use the full height of the viewport */
+    margin: 0 auto; /* Center the entire container horizontally */
+}
+
+.row {
+    display: flex;
+    justify-content: center; /* Ensures content is centered horizontally within the row */
+    align-items: flex-start; /* Align items at the start vertically */
+    width: 90%; /* Adjust width to what you prefer */
+    max-width: 1200px; /* Max width can be adjusted to fit your design */
+}
+
+#memory-game {
+    flex: 3; /* Memory game takes more space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* This can be adjusted based on the number of items you want across */
+    gap: 10px;
+    padding: 20px;
+    width: 100%; /* Adjust if necessary */
+}
+
+#feedback {
+    flex: 1;
+    margin: 10px;
+    width: 100%; /* This ensures it takes the full width allocated to it */
+    max-width: 300px; /* Prevents the feedback section from becoming too wide */
+}
+
+@media (max-width: 800px) {
+    .row {
+        flex-direction: column;
+    }
+
+    #memory-game, #feedback {
+        width: 100%;
+        max-width: none;
+    }
 }

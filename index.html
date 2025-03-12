@@ -8,33 +8,79 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Almendra:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome to the Game of Thrones Games</h1>
+    <header>
+        <h1>Welcome to the Game of Thrones Games</h1>
+        <p class="intro">
+            Dive into the world of Westeros with our Game of Thrones themed interactive games. Test your knowledge, strategy, and allegiance through various challenges designed to sort you into one of the iconic houses from the series. Will you be a cunning Lannister, a noble Stark, or perhaps a fierce Targaryen? Play to find out which Westeros house you truly belong to!
+        </p>
+    </header>
     <div id="game-banner" style="display: none; padding: 1rem; background: hsl(131, 100%, 50%); border: 1px solid #ccc; text-align: center; margin-top: 1rem;"></div>
     <div id="game-container">
-        <div id="memory-game">
-            <h2>Memory Card Game</h2>
-            <div class="grid"></div>
-            <button onclick="startMemoryGame()">Start Game</button>
-        </div>
-        <div id="feedback">
-            <h3 id="memory-message" class="countdown-header">The north remembers</h3>
-            <img id="house-image" src="images/housesort.jpg" alt="House Image">
+        <div class="row"> <!-- Flex container for just the game and feedback -->
+            <section id="memory-game">
+                <h2>Memory Card Game</h2>
+                <p class="game-description">
+                    Match the sigils and discover which House remembers your deeds. Start the game and let the memory of the North guide you!
+                </p>
+                <div class="grid"></div>
+                <button onclick="startMemoryGame()">Start Game</button>
+            </section>
+            
+            <div id="feedback">
+                <h3 id="memory-message" class="countdown-header">The north remembers</h3>
+                <img id="house-image" src="images/housesort.jpg" alt="House Image">
+            </div>
         </div>
     </div>
-        <div id="scoreboard">
-            <p>Time: <span id="time">00:00</span></p>
-            <p>Score: <span id="score">0</span></p>
-            <img id="performance-image" src="" alt="Performance Character" style="max-height: 100px; display: none;"> <!-- Initially hidden -->
-        </div><!-- Placeholder for character image -->
-    </div>    
-    <div id="attribute-game">
+    
+    <div id="scoreboard">
+        <p>Time: <span id="time">00:00</span></p>
+        <p>Score: <span id="score">0</span></p>
+        <img id="performance-image" src="" alt="Performance Character" style="max-height: 100px; display: none;">
+    </div>
+  
+    
+    <section id="battle-tactics-game">
+        <h2>Battle Tactics of Westeros</h2>
+        <p class="game-description">Choose your tactics and see which house you align with based on your battle strategy.</p>
+        <div id="battle-scenario">
+            <div class="tactic-card" onclick="chooseTactic('attack')">
+                <img src="path_to_attack_image.jpg" alt="Attack Icon">
+                <span>Lead a frontal attack</span>
+            </div>
+            <div class="tactic-card" onclick="chooseTactic('defend')">
+                <img src="path_to_defend_image.jpg" alt="Defend Icon">
+                <span>Fortify and defend</span>
+            </div>
+            <div class="tactic-card" onclick="chooseTactic('negotiate')">
+                <img src="path_to_negotiate_image.jpg" alt="Negotiate Icon">
+                <span>Seek a diplomatic solution</span>
+            </div>
+        </div>
+        <div id="battle-result"></div>
+    </section>
+    
+    
+
+
+    <section id="attribute-game">
         <h2>Attribute Assignment Game</h2>
-        <div class="questions"></div>
-        <button onclick="startAttributeGame()">Start Game</button>
-    </div>
-    <div id="results">
+        <p class="game-description">
+            Answer questions to reveal your true house alignment. Each choice you make brings you closer to your Westerosi destiny.
+        </p>
+        <div class="card" id="question-card" style="display: none;">
+            <p id="question-text"></p>
+            <div id="answers"></div>
+        </div>
+        <button onclick="startGame()" id="start-game-button">Start Game</button>
+        <button onclick="nextQuestion()" id="next-question-button" style="display: none;">Next Question</button>
+        <button onclick="calculateHouse()" id="calculate-house-button" style="display: none;">See Your House</button>
+    </section>
+    
+    <div id="results" style="display:none;">
         <h2>Your Westeros House</h2>
         <p id="house-description"></p>
+        <img id="house-image" src="" alt="House Sigil" style="max-height: 100px;">
     </div>
 
     <script src="scripts.js"></script>
