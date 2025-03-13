@@ -362,13 +362,13 @@ function updatePerformanceImage(timeElapsed) {
         src = 'images/fast.jpg';
         alt = 'Amazing speed!';
     } else if (timeElapsed <= 60) {
-        src = 'images/tyrell.jpg';
+        src = 'images/medium.jpg';
         alt = 'Great job!';
     } else if (timeElapsed <= 120) {
-        src = 'images/lannister.jpg';
+        src = 'images/slow.jpg';
         alt = 'Good effort!';
     } else {
-        src = 'images/images.jpg';
+        src = 'images/janis.jpeg';
         alt = 'Keep practicing!';
     }
 
